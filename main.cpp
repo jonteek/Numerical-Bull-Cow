@@ -110,7 +110,7 @@ int main(){
   int currentNumberOfBulls = 0;
   int currentNumberOfCows = 0;
   cout<<"I am thinking of a number. This number is 4 digits long and every digit inside it is unique."<<endl;
-  cout<<"I want you to guess which number I am thinkning about"<<endl;
+  cout<<"I want you to guess which number I am thinking about"<<endl;
   cout<<"If your guess has a digit in a correct position then I will say that you have found a bull."<<endl;
   cout<<"If your guess has a digit that is in my number but in the wrong position I will say that you have found a cow"<<endl;
   
