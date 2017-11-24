@@ -1,0 +1,2 @@
+There are some odd results if the input consists of non-integer data. This could be fixed by only allowing integers
+and displaying and error message if other data is given.
