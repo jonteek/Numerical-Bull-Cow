@@ -6,6 +6,7 @@ Description: The numerical version of the game bulls and cows
 #include<iostream>
 #include<cstdlib>
 #include<time.h>
+#include<string>
 #include<vector>
 using namespace std;
 int getNumberLength(int number) //Return the number of digits in a given number
@@ -40,6 +41,7 @@ int generateNumberWithUniqueDigits(int lengthOfNumber)
     }
   return returnNumber;
 }
+
 int checkIfNumberHasUniqueDigits(int number)
 {
   int tempOne = number;
@@ -48,7 +50,8 @@ int checkIfNumberHasUniqueDigits(int number)
   int numberToCompareCurrentNumberWith;
   while(tempOne > 0){
     currentNumber = tempOne % 10;
-    tempTwo = tempOne /= 10;
+    tempOne /=10;
+    tempTwo = tempOne;
     while(tempTwo > 0)
       {
 	numberToCompareCurrentNumberWith = tempTwo % 10;
@@ -56,7 +59,6 @@ int checkIfNumberHasUniqueDigits(int number)
 	  return 0;
 	tempTwo /= 10;
       }
-    tempOne /= 10;
       }
   return 1;
 }
@@ -104,24 +106,30 @@ int numberOfCows(int guess,int randomNumber) //A cow is a number that is in the 
 }
 using namespace std;
 int main(){
-  int expectedNumberLength = 4;
-  int randomNumber = generateNumberWithUniqueDigits(expectedNumberLength);
+  const int expectedNumberLength = 4;
+  const int randomNumber = generateNumberWithUniqueDigits(expectedNumberLength);
   int guess = 0;
   int currentNumberOfBulls = 0;
   int currentNumberOfCows = 0;
+  int err;
   cout<<"I am thinking of a number. This number is 4 digits long and every digit inside it is unique."<<endl;
   cout<<"I want you to guess which number I am thinking about"<<endl;
   cout<<"If your guess has a digit in a correct position then I will say that you have found a bull."<<endl;
   cout<<"If your guess has a digit that is in my number but in the wrong position I will say that you have found a cow"<<endl;
-  
-  cout<<"Guess a 4 digit number: "<<endl;
-  cin>>guess;
- 
-  while(getNumberLength(guess) != expectedNumberLength || checkIfNumberHasUniqueDigits(guess) == 0)
+  do
     {
-      cout<<"Your number has the wrong length or it does not have unique digits"<<endl;
+      err = 0;
+      cout<<"Guess a 4 digit number: "<<endl;
       cin>>guess;
-    }
+      if (cin.fail() || getNumberLength(guess) != expectedNumberLength || checkIfNumberHasUniqueDigits(guess) == 0)
+	{
+	  cout<<"That input is not allowed, please try again"<<endl;
+	  err = 1;
+	  cin.clear();
+	  cin.ignore(80,'\n');
+	}
+    }while(err == 1 || getNumberLength(guess) != expectedNumberLength || checkIfNumberHasUniqueDigits(guess) == 0);
+       
   if(guess == randomNumber)
     {
       cout<<"Hmm, your first guess was correct"<<endl;
@@ -133,15 +141,23 @@ int main(){
 	  currentNumberOfBulls = numberOfBulls(guess,randomNumber);
 	  currentNumberOfCows = numberOfCows(guess,randomNumber);
 	  cout<<"Number of Bulls == "<<currentNumberOfBulls<<" "<<"number of cows == "<<currentNumberOfCows<<endl;
+	  cout<<"Number of Bulls == "<<currentNumberOfBulls<<" "<<"number of cows == "<<currentNumberOfCows<<endl;
 	  cout<<"Make another guess"<<endl;
-	  cin>>guess;
-	  while(getNumberLength(guess) != expectedNumberLength || checkIfNumberHasUniqueDigits(guess) == 0)
+	  do
 	    {
-	      cout<<"Your number has the wrong length or it does not have unique digits"<<endl;
+	      err = 0;    
 	      cin>>guess;
-	    }
+	      if(cin.fail()|| getNumberLength(guess) != expectedNumberLength || !checkIfNumberHasUniqueDigits(guess))
+		{
+		  cout<<"That input is not allowed, please try again"<<endl;
+		  err = 1;
+		  cin.clear();
+		  cin.ignore(80,'\n');
+		}
+	    }while(err == 1 || getNumberLength(guess) != expectedNumberLength || !checkIfNumberHasUniqueDigits(guess));
 	}
     }
+
   cout<<"You have won the game!"<<endl;
   return 0;
 }
