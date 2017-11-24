@@ -1,7 +1,7 @@
 /*
 Author: Jonathan Ek
 Date: 2017-11-24
-Description: The numerical version of the game bull cow
+Description: The numerical version of the game bulls and cows
 */
 #include<iostream>
 #include<cstdlib>
@@ -18,17 +18,7 @@ int getNumberLength(int number) //Return the number of digits in a given number
     }
   return retVal;
 }
-int reduceNumberLength(int number, int lengthOfNumber,int expectedLength){
-  //Reduces the length of a number to the expected length if it is toolong
-  int returnValue = 0;
-  while(lengthOfNumber > expectedLength)
-    {
-      number /= 10;
-      returnValue = number;
-      lengthOfNumber --;
-    }
-  return returnValue;
-}
+
 int generateNumberWithUniqueDigits(int lengthOfNumber)
 {
   int digitsArray[] = {1,2,3,4,5,6,7,8,9};
