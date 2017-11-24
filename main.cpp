@@ -119,7 +119,7 @@ int main(){
  
   while(getNumberLength(guess) != expectedNumberLength || checkIfNumberHasUniqueDigits(guess) == 0)
     {
-      cout<<"Your number is too long or it does not have unique digits"<<endl;
+      cout<<"Your number has the wrong length or it does not have unique digits"<<endl;
       cin>>guess;
     }
   if(guess == randomNumber)
@@ -137,7 +137,7 @@ int main(){
 	  cin>>guess;
 	  while(getNumberLength(guess) != expectedNumberLength || checkIfNumberHasUniqueDigits(guess) == 0)
 	    {
-	      cout<<"Your number is too long or it does not have unique digits"<<endl;
+	      cout<<"Your number has the wrong length or it does not have unique digits"<<endl;
 	      cin>>guess;
 	    }
 	}
