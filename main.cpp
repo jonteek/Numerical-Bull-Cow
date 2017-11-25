@@ -24,7 +24,7 @@ int generateNumberWithUniqueDigits(int lengthOfNumber)
 {
   int digitsArray[] = {1,2,3,4,5,6,7,8,9};
   std::vector<int> digitsVector(digitsArray,digitsArray + sizeof(digitsArray) / sizeof(int));
-  int lengthOfVector = 9;
+  int lengthOfVector = sizeof(digitsArray) / sizeof(int);
   srand(time(NULL));
   int currentNumber = 0;
   int multiplier = 1;
@@ -128,7 +128,7 @@ int main(){
 	  cin.clear();
 	  cin.ignore(80,'\n');
 	}
-    }while(err == 1 || getNumberLength(guess) != expectedNumberLength || checkIfNumberHasUniqueDigits(guess) == 0);
+    }while(err == 1);
        
   if(guess == randomNumber)
     {
@@ -140,8 +140,7 @@ int main(){
 	{
 	  currentNumberOfBulls = numberOfBulls(guess,randomNumber);
 	  currentNumberOfCows = numberOfCows(guess,randomNumber);
-	  cout<<"Number of Bulls == "<<currentNumberOfBulls<<" "<<"number of cows == "<<currentNumberOfCows<<endl;
-	  cout<<"Number of Bulls == "<<currentNumberOfBulls<<" "<<"number of cows == "<<currentNumberOfCows<<endl;
+	  cout<<"Number of Bulls = "<<currentNumberOfBulls<<" "<<"number of cows = "<<currentNumberOfCows<<endl;
 	  cout<<"Make another guess"<<endl;
 	  do
 	    {
@@ -154,11 +153,12 @@ int main(){
 		  cin.clear();
 		  cin.ignore(80,'\n');
 		}
-	    }while(err == 1 || getNumberLength(guess) != expectedNumberLength || !checkIfNumberHasUniqueDigits(guess));
+	    }while(err == 1);
 	}
     }
 
   cout<<"You have won the game!"<<endl;
+
   return 0;
 }
 
